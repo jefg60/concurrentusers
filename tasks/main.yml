@@ -1,0 +1,18 @@
+# ansible-orchestration-win role
+---
+tasks:
+  - name: create c:\temp folder
+    win_file:
+      path: "C:\\temp\\"
+      state: directory
+
+  - name: upload concurrentusers.ps1
+    win_copy:
+      src: concurrentusers.ps1
+      dest: "C:\\temp\\"
+
+  - name: set maxconcurrent users for winrs
+    win_shell: "powershell -ExecutionPolicy ByPass c:\\TEMP\\concurrentusers.ps1"
+    args:
+      creates: "C:\\temp\\concurrentusers.done"
+      chdir: "C:\\temp\\"
