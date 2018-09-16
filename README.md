@@ -1,38 +1,44 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Sets up some ansible optimisations for servers already controlled by ansible. Shouldn't be needed if you have used my powershell scripts to configure windows nodes for ansible orchestration!
+
+(TODO: update powershell-scripts repo to make the above statement true)
+
+Essentially, updates MaxConcurrentUsers value for the windows winrs configuration to prevent ansible errors.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+A working ansible winrm connection on the target windows node. For instance perhaps you have groups of servers that all use a different ansible user and you want to standardise this.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+tempdir: directory for temporary script files
+ansible_user: local windows admin user to create for ansible orchestration purposes
+old_ansible_users: list of other local user accounts to remove
+TODO: add this and make it create the user and remove any old ones if succesful
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
 
 Example Playbook
 ----------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
+    - hosts: windows-servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: jef60.ansible-orchestration-win, ansible_user: ansibleuser }
 
 License
 -------
 
-BSD
+GPLv3
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Jeff Hibberd
