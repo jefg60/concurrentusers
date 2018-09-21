@@ -13,5 +13,5 @@
 - name: set maxconcurrent users for winrs
   win_shell: "powershell -ExecutionPolicy ByPass {{ win_tempdir }}concurrentusers.ps1"
   args:
-    creates: "{{ win_tempdir }}"concurrentusers.done"
+    creates: "{{ win_tempdir }}concurrentusers.done"
     chdir: "{{ win_tempdir }}"
