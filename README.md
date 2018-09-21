@@ -10,15 +10,11 @@ Essentially, updates MaxConcurrentUsers value for the windows winrs configuratio
 Requirements
 ------------
 
-A working ansible winrm connection on the target windows node. For instance perhaps you have groups of servers that all use a different ansible user and you want to standardise this.
 
 Role Variables
 --------------
 
-tempdir: directory for temporary script files
-ansible_user: local windows admin user to create for ansible orchestration purposes
-old_ansible_users: list of other local user accounts to remove
-TODO: add this and make it create the user and remove any old ones if succesful
+win_tempdir: directory for temporary script files
 
 Dependencies
 ------------
@@ -31,7 +27,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: windows-servers
       roles:
-         - { role: jef60.ansible-orchestration-win, ansible_user: ansibleuser }
+         - { role: jef60.ansible-orchestration-win, win_tempdir: c:\\temp\\ }
 
 License
 -------

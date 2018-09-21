@@ -2,16 +2,16 @@
 ---
 - name: create c:\temp folder
   win_file:
-    path: "C:\\temp\\"
+    path: "{{ win_tempdir }}"
     state: directory
 
 - name: upload concurrentusers.ps1
   win_copy:
     src: concurrentusers.ps1
-    dest: "C:\\temp\\"
+    dest: "{{ win_tempdir }}"
 
 - name: set maxconcurrent users for winrs
-  win_shell: "powershell -ExecutionPolicy ByPass c:\\TEMP\\concurrentusers.ps1"
+  win_shell: "powershell -ExecutionPolicy ByPass {{ win_tempdir }}concurrentusers.ps1"
   args:
-    creates: "C:\\temp\\concurrentusers.done"
-    chdir: "C:\\temp\\"
+    creates: "{{ win_tempdir }}"concurrentusers.done"
+    chdir: "{{ win_tempdir }}"
